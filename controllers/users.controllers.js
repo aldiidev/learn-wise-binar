@@ -381,7 +381,7 @@ module.exports = {
         let titleNotif = 'SUCCESSFULLY CHANGING YOUR PASSWORD!';
         let deskNotif = `Congratulations ${decoded.email} You have successfully changed your password, please log in using your new password!`;
 
-        await createNotifAuto(decoded.account_id, titleNotif, deskNotif, res);
+        await createNotifAuto(updated.account_id, titleNotif, deskNotif, res);
         
         res.status(200).json({
           status: true,
