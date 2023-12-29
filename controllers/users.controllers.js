@@ -326,7 +326,7 @@ module.exports = {
       var location = req.headers.origin; //get HOST & PORT
 
       // let url = `${location}/auth/reset-password?token=${token}`; //send token in link to get user
-      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${token}</strong></p>`; //send token in link to get user
+      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${location}/auth/reset-password?token=${token}</strong></p>`; //send token in link to get user
       // const html = await nodemailer.getHtml('reset-password-valid.ejs', {
       //   email,
       //   url,
