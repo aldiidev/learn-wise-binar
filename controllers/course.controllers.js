@@ -2,7 +2,6 @@ const prisma = require('../libs/prisma')
 const { getPagination } = require('../helper/index');
 const imagekit = require('../libs/imagekit');
 const path = require('path');
-const { createNotifAuto } = require('./notification.controller');
 
 const getAllCourse = async (req, res, next) => {
     try {
@@ -61,6 +60,7 @@ const getAllCourse = async (req, res, next) => {
                 premium: true,
                 harga: true,
                 level: true,
+                is_visible: true,
                 Kategori: {
                     select: {
                         title: true,
@@ -140,7 +140,6 @@ const getCoursebyId = async(req,res,next)=>{
         }else{
             sudahBeli = false
         }
-        console.log(sudahBeli)
         let progress
         if(sudahBeli){
             progress = await prisma.course_progress.findMany({
@@ -165,6 +164,7 @@ const getCoursebyId = async(req,res,next)=>{
                 url_gc_tele:true,
                 premium: true,
                 harga: true,
+                is_visible:true,
                 url_image_preview:true,
                 level:true,
                 Kategori:{
@@ -206,7 +206,6 @@ const getCoursebyId = async(req,res,next)=>{
                 }
             }
         })
-        console.log(module)
         if(!course) return res.json("Course isnt registered")
         // Mengambil informasi rating dari tabel Rating
         let ratings = await prisma.rating.findMany({
@@ -350,7 +349,13 @@ const beliCourse = async(req,res,next)=>{
         //create Notification
         let titleNotif = 'Un-Successful purchase course added!';
         let deskNotif = `Hii ${account.nama} you have courses that you haven't purchased yet, To get full access to the course, please complete the payment`;
-        await createNotifAuto(account.account_id, titleNotif, deskNotif, res);
+        await prisma.notifikasi.create({
+            data: {
+              account_id: account.account_id,
+              title: titleNotif,
+              deskripsi: deskNotif,
+            },
+          });
 
         res.status(200).json({
             success: true,
@@ -447,4 +452,36 @@ const updateCourse = async(req,res,next)=>{
     }
 }
 
-module.exports ={getAllCourse,getCoursebyId,addCourse,deleteCoursebyId,beliCourse, updateCourse}
+const updateStatusCourse = async (req,res,next)=>{
+    try {
+        let { course_id } = req.params
+        course_id = Number(course_id)
+        
+        let isExist = await prisma.course.findUnique({where:{course_id}})
+        if (!isExist){
+            return res.status(400).json({
+                status:false,
+                message:'bad request!',
+                err:'course id not found!',
+                data: null
+            })
+        }
+
+        let updatedCourse = await prisma.course.update({
+            where:{ course_id },
+            data:{ is_visible : false}
+        })
+
+        res.status(200).json({
+            status:true,
+            message:'success!',
+            err: null,
+            data: { updatedCourse }
+        })
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports ={getAllCourse,getCoursebyId,addCourse,deleteCoursebyId,beliCourse, updateCourse, updateStatusCourse}
