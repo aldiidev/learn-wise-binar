@@ -21,7 +21,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'akun anda sudah terdaftar',
+          error: 'akun anda sudah terdaftar',
           data: null,
         });
       }
@@ -139,7 +139,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'Invalid Activation Code or Code Expired',
+          error: 'Invalid Activation Code or Code Expired',
           data: null,
         });
       }
@@ -280,7 +280,7 @@ module.exports = {
         createUpdateotp(user.account_id, user.nama, user.email, res);
         return res.status(401).json({
           status: false,
-          err: 'lakukan verifikasi terlebih dahulu',
+          error: 'lakukan verifikasi terlebih dahulu',
           message: 'harap periksa email anda untuk mendapat otp',
           data: { email: user.email, is_verified: user.is_verified },
         });
@@ -317,7 +317,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Email Not Found',
-          err: 'Enter Regisreted Email!',
+          error: 'Enter Regisreted Email!',
           data: null,
         });
       }
@@ -348,7 +348,7 @@ module.exports = {
       return res.status(200).json({
         status: true,
         message: 'Send',
-        err: null,
+        error: null,
         data: { email },
       });
     } catch (err) {
@@ -363,7 +363,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'please ensure that the password and password confirmation match!',
+          error: 'please ensure that the password and password confirmation match!',
           data: null,
         });
       }
@@ -373,7 +373,7 @@ module.exports = {
           return res.status(401).json({
             status: false,
             message: 'Bad Request',
-            err: err.message,
+            error: err.message,
             data: null,
           });
         }
@@ -398,7 +398,7 @@ module.exports = {
         res.status(200).json({
           status: true,
           message: 'success',
-          err: null,
+          error: null,
           data: {
             user: {
               nama: updated.nama,
@@ -426,7 +426,7 @@ module.exports = {
     return res.status(200).json({
       status: true,
       message: 'OK',
-      err: null,
+      error: null,
       data: { user: account, listCourse:courseId},
     });
   },
