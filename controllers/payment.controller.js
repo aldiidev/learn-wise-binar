@@ -123,8 +123,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Un-Successful purchase course added by admin!';
-      let deskNotif = `Hii ${account.nama} you have courses that you haven't purchased yet, To get full access to the course, please complete the payment`;
+      let titleNotif = 'Kursus telah ditambahkan oleh admin. Lengkapi pembayaran untuk memulai belajar.';
+      let deskNotif = `Hai ${account.nama} Anda memiliki kelas yang belum Anda beli, Untuk mendapatkan akses penuh ke kursus tersebut, silakan selesaikan pembayaran`;
       
       await prisma.notifikasi.create({
         data: {
@@ -179,8 +179,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Successful purchase course added by admin!';
-      let deskNotif = `Hii ${account.nama}, Congratulations you have successfully purchased the course and got full access to the course`;
+      let titleNotif = 'Kursus telah ditambahkan. Selamat mempelajari skill baru';
+      let deskNotif = `Hai ${account.nama}, Selamat Anda telah berhasil membeli kursus dan mendapatkan akses penuh ke kursus tersebut`;
       
       await prisma.notifikasi.create({
         data: {
@@ -354,8 +354,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Un-Successful purchase course added!';
-      let deskNotif = `Hii ${account.nama} you have courses that you haven't purchased yet, To get full access to the course, please complete the payment`;
+      let titleNotif = 'Kursus telah ditambahkan. Lengkapi pembayaran untuk memulai belajar.';
+      let deskNotif = `Hai ${account.nama} Anda memiliki kelas yang belum Anda beli, Untuk mendapatkan akses penuh ke kursus tersebut, silakan selesaikan pembayaran`;
 
       await prisma.notifikasi.create({
         data: {
@@ -405,8 +405,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Successful purchase course added!';
-      let deskNotif = `Hii ${account.nama}, Congratulations you have successfully purchased the course and got full access to the course`;
+      let titleNotif = 'Kursus telah ditambahkan. Selamat mempelajari skill baru';
+      let deskNotif = `Hai ${account.nama}, Selamat Anda telah berhasil membeli kursus dan mendapatkan akses penuh ke kursus tersebut`;
 
       await prisma.notifikasi.create({
         data: {

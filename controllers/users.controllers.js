@@ -161,8 +161,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Success Registrasi Akun!';
-      let deskNotif = `Congratulations ${email} on successfully verifying your account!`;
+      let titleNotif = 'Sukses Registrasi Akun!';
+      let deskNotif = `Selamat ${email} karena berhasil memverifikasi akun Anda!`;
       await prisma.notifikasi.create({
         data: {
           account_id: activationOtp.account_id,
@@ -325,7 +325,7 @@ module.exports = {
       let token = jwt.sign({ account_id: emailExist.account_id, email: emailExist.email }, JWT_SECRET_KEY);
       var location = `https://final-project-binar-b10.vercel.app`
       // let url = `${location}/auth/reset-password?token=${token}`; //send token in link to get user
-      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${location}/auth/reset-password?token=${token}</strong></p>`; //send token in link to get user
+      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${location}/reset?token=${token}</strong></p>`; //send token in link to get user
       // const html = await nodemailer.getHtml('reset-password-valid.ejs', {
       //   email,
       //   url,
@@ -334,8 +334,8 @@ module.exports = {
       nodemailer.sendEmail(email, 'Reset Password', url);
 
       //create Notification
-      let titleNotif = 'Request Reset Password Detected!';
-      let deskNotif = `Request Password Reset in email ${email} has been detected!, please check your email to proceed to the next step or ignore this message if that's not you`;
+      let titleNotif = 'Permintaan Reset Kata Sandi Terdeteksi!';
+      let deskNotif = `Permintaan Reset Kata Sandi di email ${email} telah terdeteksi!, silakan periksa email Anda untuk melanjutkan ke langkah berikutnya atau abaikan pesan ini jika itu bukan Anda`;
 
       await prisma.notifikasi.create({
         data: {
@@ -384,8 +384,8 @@ module.exports = {
         });
 
         //create Notification
-        let titleNotif = 'SUCCESSFULLY CHANGING YOUR PASSWORD!';
-        let deskNotif = `Congratulations ${decoded.email} You have successfully changed your password, please log in using your new password!`;
+        let titleNotif = 'Sukses mengubah password anda!';
+        let deskNotif = `Selamat ${decoded.email} Anda telah berhasil mengubah kata sandi Anda, silakan login menggunakan kata sandi baru Anda!`;
 
         await prisma.notifikasi.create({
           data: {
