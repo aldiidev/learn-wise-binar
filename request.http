@@ -14,10 +14,10 @@ Content-Type: application/json
 ### verify otp
 POST http://localhost:3000/auth/verify-otp
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzA0NDM3MjM0fQ.a7ehn3roOnhRFSX31d737-5JH1e8dX6-FDFW5EdfEJU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoiYWhtYWRtb3JhbGRpMDZAZ21haWwuY29tIiwiaWF0IjoxNzA0NDM5ODIxfQ.gIsSAO7kqZTl24lg0aIn-r8hfkSFeSOYZd6jSl4v7dk
 
 {
-    "otp":"747587"
+    "otp":"736357"
 }
 
 #### resend otp
@@ -30,8 +30,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email":"200401141@student.umri.ac.id",
-    "password":"password123"
+    "email":"ahmadmoraldi06@gmail.com",
+    "password":"aldi123"
 }
 
 ### RESET PASSWORD
@@ -53,7 +53,7 @@ Content-Type: application/json
 
 ### GET USER BY TOKEN
 GET http://localhost:3000/auth/whoami
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImVtYWlsIjoiMjAwNDAxMTQxQHN0dWRlbnQudW1yaS5hYy5pZCIsImlhdCI6MTcwMjcyMDMyNH0.tdimyWKTyjQLG71vT56kJwqT8GRgqLQgQzSAOSHgNsY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoiYWhtYWRtb3JhbGRpMDZAZ21haWwuY29tIiwiaWF0IjoxNzA0NDM5NzAyfQ.6T5W6fqgkQ0Dk6bHLLY-EM0lwfu6YRv4UWy0q7FRSO4
 
 # ------------------------------------ PROFILE ------------------------------------
 

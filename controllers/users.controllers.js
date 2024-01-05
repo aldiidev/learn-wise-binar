@@ -274,6 +274,11 @@ module.exports = {
       const userVerified = await prisma.account.findUnique({
         where: { email, is_verified: true },
       });
+      
+      const token = jwt.sign(
+        { id: user.account_id, email: user.email },
+        JWT_SECRET_KEY
+      );
 
       if (!userVerified) {
         //generate otp
@@ -282,27 +287,23 @@ module.exports = {
           status: false,
           error: 'lakukan verifikasi terlebih dahulu',
           message: 'harap periksa email anda untuk mendapat otp',
-          data: { email: user.email, is_verified: user.is_verified },
-        });
-      } else {
-        const token = jwt.sign(
-          { id: user.account_id, email: user.email },
-          JWT_SECRET_KEY
-        );
-
-        res.cookie('token', token, {
-          httpOnly: true,
-          maxAge: 60 * 60 * 24 * 30 * 1000,
-        });
-
-        // bisa redirect kalau sudah login ke sini
-        //res.redirect(`/home);
-        return res.status(200).json({
-          status: true,
-          message: 'Berhasil login',
-          data: { user, token },
+          data: { email: user.email, is_verified: user.is_verified, token },
         });
       }
+
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 30 * 1000,
+      });
+
+      // bisa redirect kalau sudah login ke sini
+      //res.redirect(`/home);
+      return res.status(200).json({
+        status: true,
+        message: 'Berhasil login',
+        data: { user, token },
+      });
+      
     } catch (err) {
       next(err);
     }
