@@ -122,8 +122,8 @@ const updateProfilebyId = async (req, res, next) => {
     });
 
     //create Notification
-    let titleNotif = 'SUCCESSFULLY CHANGING YOUR INFO ACCOUNT!';
-    let deskNotif = `Congratulations ${accountExist.email} Your account information has been successfully changed by admin!`;
+    let titleNotif = 'Sukses mengganti info akun anda!';
+    let deskNotif = `Selamat ${accountExist.email} informasi akun Anda telah berhasil diubah oleh admin!`;
 
     await prisma.notifikasi.create({
       data: {
@@ -200,8 +200,8 @@ const changePasswordbyLogin = async (req, res, next) => {
     });
 
     //create Notification
-    let titleNotif = 'SUCCESSFULLY CHANGING YOUR PASSWORD!';
-    let deskNotif = `Congratulations ${isExist.nama} You have successfully changed your password via profile menu!`;
+    let titleNotif = 'sukses mengubah password anda!';
+    let deskNotif = `Selamat ${isExist.nama} anda telah berhasil mengubah kata sandi Anda melalui menu profil!`;
 
     await prisma.notifikasi.create({
       data: {
@@ -371,8 +371,8 @@ const updateProfilebyLogin = async (req, res, next) => {
     });
 
     //create Notification
-    let titleNotif = 'SUCCESSFULLY CHANGING YOUR INFO ACCOUNT!';
-    let deskNotif = `Congratulations ${user.email} You have successfully changed your info account!`;
+    let titleNotif = 'Sukses ganti info akun anda!';
+    let deskNotif = `Selamat ${user.email} anda telah berhasil mengubah akun info Anda!`;
 
     await prisma.notifikasi.create({
       data: {

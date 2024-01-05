@@ -20,6 +20,7 @@ module.exports = {
 
       let notification = await prisma.notifikasi.findMany({
         where: conditions,
+        orderBy: [{ notifikasi_id: 'desc' }],
         skip: (page - 1) * limit,
         take: limit,
       });
@@ -96,6 +97,7 @@ module.exports = {
 
       // err pencarian acc dihandle oleh restrict
       let notifikasi = await prisma.notifikasi.findMany({
+        orderBy: [{ notifikasi_id: 'desc' }],
         where: {
           account_id,
         },
@@ -200,96 +202,105 @@ module.exports = {
       next(err);
     }
   },
-  updateNotifbyId: async (req,res,next)=>{
+  updateNotifbyId: async (req, res, next) => {
     try {
-      let {notifikasi_id} = req.params
-      notifikasi_id = Number(notifikasi_id)
-      let {account_id} = req.body
+      let { notifikasi_id } = req.params;
+      notifikasi_id = Number(notifikasi_id);
+      let { account_id } = req.body;
 
-      let isNotificationExist = await prisma.notifikasi.findUnique({where:{notifikasi_id}})
-      let isAccountExist = await prisma.account.findUnique({where:{account_id}})
-      let isMatch = await prisma.notifikasi.findFirst({where:{notifikasi_id,account_id}})
-      
-      if (!isNotificationExist){
+      let isNotificationExist = await prisma.notifikasi.findUnique({
+        where: { notifikasi_id },
+      });
+      let isAccountExist = await prisma.account.findUnique({
+        where: { account_id },
+      });
+      let isMatch = await prisma.notifikasi.findFirst({
+        where: { notifikasi_id, account_id },
+      });
+
+      if (!isNotificationExist) {
         return res.status(400).json({
           status: false,
           message: 'bad request',
           err: 'Notificaion Id Not Found!',
-          data: null
-        })
+          data: null,
+        });
       }
-      if (!isAccountExist){
+      if (!isAccountExist) {
         return res.status(400).json({
           status: false,
           message: 'bad request',
           err: 'Account Id Not Found!',
-          data: null
-        })
+          data: null,
+        });
       }
-      if (!isMatch){
+      if (!isMatch) {
         return res.status(400).json({
           status: false,
           message: 'bad request',
           err: 'Notification Id & Account Id Not Match!',
-          data: null
-        })
+          data: null,
+        });
       }
 
       let updated = await prisma.notifikasi.update({
-        where:{notifikasi_id},
-        data:{is_read:true}
-      })
+        where: { notifikasi_id },
+        data: { is_read: true },
+      });
 
       res.status(200).json({
         status: true,
         message: 'Notification has been read!',
         err: null,
-        data: {updated}
-      })
-      
+        data: { updated },
+      });
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
-  updateNotifbyLogin: async (req,res,next)=>{
+  updateNotifbyLogin: async (req, res, next) => {
     try {
-      let {account_id} = req.user
-      let {notifikasi_id} = req.params
-      notifikasi_id = Number(notifikasi_id)
+      let { account_id } = req.user;
+      let { notifikasi_id } = req.params;
+      notifikasi_id = Number(notifikasi_id);
 
-      let isNotificationExist = await prisma.notifikasi.findUnique({where:{notifikasi_id}})
-      let isMatch = await prisma.notifikasi.findFirst({where:{notifikasi_id,account_id}})
-      
-      if (!isNotificationExist){
+      let isNotificationExist = await prisma.notifikasi.findUnique({
+        where: { notifikasi_id },
+      });
+      let isMatch = await prisma.notifikasi.findFirst({
+        where: { notifikasi_id, account_id },
+      });
+
+      if (!isNotificationExist) {
         return res.status(400).json({
           status: false,
           message: 'bad request',
           err: 'Notificaion Id Not Found!',
-          data: null
-        })
+          data: null,
+        });
       }
-      if (!isMatch){
+      if (!isMatch) {
         return res.status(400).json({
           status: false,
           message: 'bad request',
           err: 'Notification Id & Account Id Not Match!',
-          data: null
-        })
+          data: null,
+        });
       }
 
       let updated = await prisma.notifikasi.update({
-        where:{notifikasi_id},
-        data:{is_read:true}
-      })
+        where: { notifikasi_id },
+        data: { is_read: true },
+      });
 
       res.status(200).json({
         status: true,
         message: 'Notification has been read!',
         err: null,
-        data: {updated}
-      })
+        data: { updated },
+      });
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
   createNotifAuto: async (account_id, title, deskripsi, res, next) => {

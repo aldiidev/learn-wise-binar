@@ -21,7 +21,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'akun anda sudah terdaftar',
+          error: 'akun anda sudah terdaftar',
           data: null,
         });
       }
@@ -139,7 +139,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'Invalid Activation Code or Code Expired',
+          error: 'Invalid Activation Code or Code Expired',
           data: null,
         });
       }
@@ -161,8 +161,8 @@ module.exports = {
       });
 
       //create Notification
-      let titleNotif = 'Success Registrasi Akun!';
-      let deskNotif = `Congratulations ${email} on successfully verifying your account!`;
+      let titleNotif = 'Sukses Registrasi Akun!';
+      let deskNotif = `Selamat ${email} karena berhasil memverifikasi akun Anda!`;
       await prisma.notifikasi.create({
         data: {
           account_id: activationOtp.account_id,
@@ -280,7 +280,7 @@ module.exports = {
         createUpdateotp(user.account_id, user.nama, user.email, res);
         return res.status(401).json({
           status: false,
-          err: 'lakukan verifikasi terlebih dahulu',
+          error: 'lakukan verifikasi terlebih dahulu',
           message: 'harap periksa email anda untuk mendapat otp',
           data: { email: user.email, is_verified: user.is_verified },
         });
@@ -317,15 +317,15 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Email Not Found',
-          err: 'Enter Regisreted Email!',
+          error: 'Enter Regisreted Email!',
           data: null,
         });
       }
 
       let token = jwt.sign({ account_id: emailExist.account_id, email: emailExist.email }, JWT_SECRET_KEY);
-      var location = req.headers.host; //get HOST & PORT
+      var location = `https://final-project-binar-b10.vercel.app`
       // let url = `${location}/auth/reset-password?token=${token}`; //send token in link to get user
-      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${location}/auth/reset-password?token=${token}</strong></p>`; //send token in link to get user
+      let url = `<p>Hi ${email}, ini adalah token Anda: <strong>${location}/reset?token=${token}</strong></p>`; //send token in link to get user
       // const html = await nodemailer.getHtml('reset-password-valid.ejs', {
       //   email,
       //   url,
@@ -334,8 +334,8 @@ module.exports = {
       nodemailer.sendEmail(email, 'Reset Password', url);
 
       //create Notification
-      let titleNotif = 'Request Reset Password Detected!';
-      let deskNotif = `Request Password Reset in email ${email} has been detected!, please check your email to proceed to the next step or ignore this message if that's not you`;
+      let titleNotif = 'Permintaan Reset Kata Sandi Terdeteksi!';
+      let deskNotif = `Permintaan Reset Kata Sandi di email ${email} telah terdeteksi!, silakan periksa email Anda untuk melanjutkan ke langkah berikutnya atau abaikan pesan ini jika itu bukan Anda`;
 
       await prisma.notifikasi.create({
         data: {
@@ -348,7 +348,7 @@ module.exports = {
       return res.status(200).json({
         status: true,
         message: 'Send',
-        err: null,
+        error: null,
         data: { email },
       });
     } catch (err) {
@@ -363,7 +363,7 @@ module.exports = {
         return res.status(400).json({
           status: false,
           message: 'Bad Request',
-          err: 'please ensure that the password and password confirmation match!',
+          error: 'please ensure that the password and password confirmation match!',
           data: null,
         });
       }
@@ -373,7 +373,7 @@ module.exports = {
           return res.status(401).json({
             status: false,
             message: 'Bad Request',
-            err: err.message,
+            error: err.message,
             data: null,
           });
         }
@@ -384,8 +384,8 @@ module.exports = {
         });
 
         //create Notification
-        let titleNotif = 'SUCCESSFULLY CHANGING YOUR PASSWORD!';
-        let deskNotif = `Congratulations ${decoded.email} You have successfully changed your password, please log in using your new password!`;
+        let titleNotif = 'Sukses mengubah password anda!';
+        let deskNotif = `Selamat ${decoded.email} Anda telah berhasil mengubah kata sandi Anda, silakan login menggunakan kata sandi baru Anda!`;
 
         await prisma.notifikasi.create({
           data: {
@@ -398,7 +398,7 @@ module.exports = {
         res.status(200).json({
           status: true,
           message: 'success',
-          err: null,
+          error: null,
           data: {
             user: {
               nama: updated.nama,
@@ -426,7 +426,7 @@ module.exports = {
     return res.status(200).json({
       status: true,
       message: 'OK',
-      err: null,
+      error: null,
       data: { user: account, listCourse:courseId},
     });
   },

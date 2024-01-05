@@ -19,6 +19,7 @@ module.exports = {
             select: {
               title: true,
               harga: true,
+              url_image_preview: true,
               Kategori: {
                 select: {
                   title: true,
@@ -99,6 +100,7 @@ module.exports = {
         select: {
           course_id: true,
           title: true,
+          url_image_preview: true,
           kode_kelas: true,
           kategori_id: true,
           premium: true,
@@ -225,6 +227,7 @@ module.exports = {
             select: {
               title: true,
               harga: true,
+              url_image_preview: true,
               Kategori: {
                 select: {
                   title: true,

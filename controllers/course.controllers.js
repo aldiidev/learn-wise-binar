@@ -56,6 +56,7 @@ const getAllCourse = async (req, res, next) => {
                 course_id: true,
                 title: true,
                 kode_kelas: true,
+                url_image_preview: true,
                 kategori_id: true,
                 premium: true,
                 harga: true,
@@ -347,8 +348,8 @@ const beliCourse = async(req,res,next)=>{
         });
 
         //create Notification
-        let titleNotif = 'Un-Successful purchase course added!';
-        let deskNotif = `Hii ${account.nama} you have courses that you haven't purchased yet, To get full access to the course, please complete the payment`;
+        let titleNotif = 'Kelas telah ditambahkan. Lengkapi pembayaran untuk memulai belajar.';
+        let deskNotif = `Hai ${account.nama} Anda memiliki kelas yang belum Anda beli, Untuk mendapatkan akses penuh ke kursus tersebut, silakan selesaikan pembayaran`;
         await prisma.notifikasi.create({
             data: {
               account_id: account.account_id,
