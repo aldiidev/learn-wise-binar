@@ -14,16 +14,16 @@ Content-Type: application/json
 ### verify otp
 POST http://localhost:3000/auth/verify-otp
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoyLCJlbWFpbCI6IjIwMDQwMTE0MUBzdHVkZW50LnVtcmkuYWMuaWQiLCJpYXQiOjE3MDMxODExOTR9.cqc_FzOAZLvBAmZrZAI1gCVIHHgJX493SZ_m4CelNS8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzA0NDM3MjM0fQ.a7ehn3roOnhRFSX31d737-5JH1e8dX6-FDFW5EdfEJU
 
 {
-    "otp":"483184"
+    "otp":"747587"
 }
 
 #### resend otp
 POST http://localhost:3000/auth/resend-otp
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoyLCJlbWFpbCI6IjIwMDQwMTE0MUBzdHVkZW50LnVtcmkuYWMuaWQiLCJpYXQiOjE3MDMxODExOTR9.cqc_FzOAZLvBAmZrZAI1gCVIHHgJX493SZ_m4CelNS8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzA0NDM3MjM0fQ.a7ehn3roOnhRFSX31d737-5JH1e8dX6-FDFW5EdfEJU
 
 ### login
 POST http://localhost:3000/auth/login
@@ -333,7 +333,7 @@ GET http://localhost:3000/notification/111
 
 ### GET NOTIFICATION BY LOGIN
 GET http://localhost:3000/notification/myNotifications
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzAzNTExODE5fQ.l4-u_qVxIZZlmbQ82jWc_WwE_3HXztCUzUIlBBRb_aU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzA0NDM3MjM0fQ.a7ehn3roOnhRFSX31d737-5JH1e8dX6-FDFW5EdfEJU
 
 ### CREATE NOTIF BROADCAST
 POST http://localhost:3000/notification/broadcast
@@ -417,10 +417,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiIyMDA0
 ### CREATE PAYMENT BY LOGIN
 POST http://localhost:3000/payment/checkout
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImVtYWlsIjoiMjAwNDAxMTQxQHN0dWRlbnQudW1yaS5hYy5pZCIsImlhdCI6MTcwMjcyMDMyNH0.tdimyWKTyjQLG71vT56kJwqT8GRgqLQgQzSAOSHgNsY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiIyMDA0MDExNDFAc3R1ZGVudC51bXJpLmFjLmlkIiwiaWF0IjoxNzA0NDM3MjM0fQ.a7ehn3roOnhRFSX31d737-5JH1e8dX6-FDFW5EdfEJU
 
 {
-    "course_id" : 5
+    "course_id" : 25
 }
 
 ### UPDATE PAYMENT BY LOGIN
