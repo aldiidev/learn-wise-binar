@@ -56,6 +56,7 @@ const getAllCourse = async (req, res, next) => {
                 course_id: true,
                 title: true,
                 kode_kelas: true,
+                url_image_preview: true,
                 kategori_id: true,
                 premium: true,
                 harga: true,
