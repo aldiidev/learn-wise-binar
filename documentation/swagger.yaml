@@ -2244,7 +2244,7 @@ paths:
           description: ID of the course to update
       requestBody:
         required: true
-        $ref: "#/components/requestBodies/addCourse"
+        $ref: "#/components/requestBodies/editCorse"
 
       responses:
         '200':
@@ -4859,7 +4859,40 @@ components:
                 - kategori_id
                 - harga
                 - mentor_id
-    
+    editCorse:
+      content:
+        multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the new course
+                deskripsi:
+                  type: string
+                  description: Description of the new course
+                kode_kelas:
+                  type: string
+                  description: Code of the new course
+                kategori_id:
+                  type: integer
+                  description: ID of the category to which the new course belongs
+                harga:
+                  type: number
+                  description: Price of the new course
+                premium:
+                  type: boolean
+                  description: Whether the new course is premium or not
+                mentor_id:
+                  type: integer
+                  description: ID of the mentor for the new course
+                level:
+                  type: string
+                  description: Level of the new course (e.g., beginner, intermediate, advanced)
+                url_image_preview:
+                  type: string
+                  format: binary
+                  description: Course image file (if applicable)
     createCategory:
       content:
         application/json:
